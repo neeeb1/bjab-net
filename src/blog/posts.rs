@@ -1,5 +1,8 @@
 use comrak::{Options, markdown_to_html};
 // TODO: Generate HTML from templates and .md files
+// TODO: Create posts struct to hold post data
+// TODO: Wire up greymatter with comrak to get post meta date (slug, title, description, etc.)
+// Write all html at startup rather than each time handler is called?
 
 pub fn render() -> String {
     let body = markdown_to_html("# Title of blog
