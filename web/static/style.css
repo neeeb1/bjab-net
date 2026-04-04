@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@source "../index.html";
+
+@layer base {
+  html {
+    background-color: oklch(14.1% 0.005 285.823); /* zinc-950 */
+    color: oklch(96.7% 0.001 286.375);            /* zinc-100 */
+  }
+}
