@@ -1,4 +1,4 @@
-use crate::blog::{self, render::{TEST_BODY, render_html_from_md}};
+use crate::blog::{self, render::render_html_from_md};
 use axum::response::{Html, IntoResponse};
 
 // Handler for the root of the site at "/blog"

@@ -1,6 +1,6 @@
-use comrak::*;
-use comrak::nodes::NodeValue;
 use comrak::html::ChildRendering;
+use comrak::nodes::NodeValue;
+use comrak::*;
 use std::fmt::Write;
 
 // Custom formatter for blog post markdown
