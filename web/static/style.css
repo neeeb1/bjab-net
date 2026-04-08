@@ -3,7 +3,7 @@
 
 @layer base {
   html {
-    background-color: oklch(14.1% 0.005 285.823); /* zinc-950 */
-    color: oklch(96.7% 0.001 286.375);            /* zinc-100 */
+    background-color: oklch(26.3% 0.024 320.12); /* mauve-800 */
+    color: oklch(92.2% 0.005 325.62);            /* mauve-200 */
   }
 }

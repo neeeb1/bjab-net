@@ -62,38 +62,9 @@
           </div>
         </section>
 
-        <!-- Writing -->
-        <section id="posts" class="border-b border-mauve-800 py-12">
-          <h2 class="mb-8 font-mono text-xs tracking-widest text-mauve-500 uppercase">Writing</h2>
-          <ul class="space-y-6">
-            <!-- Placeholder posts — replace with dynamic content from Rust server -->
-            <li>
-              <a href="/blog/{{ post.slug }}" class="group block">
-                <div class="flex items-baseline justify-between gap-4">
-                  <span class="font-medium text-mauve-100 transition-colors group-hover:text-violet-400"> {{ post.title }} </span>
-                  <span class="shrink-0 font-mono text-sm text-mauve-600">{{ post.date }}</span>
-                </div>
-                <p class="mt-1 text-sm text-mauve-500">{{ post.description }}</p>
-              </a>
-            </li>
-          </ul>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="py-12">
-          <h2 class="mb-8 font-mono text-xs tracking-widest text-mauve-500 uppercase">Projects</h2>
-          <ul class="space-y-4">
-            <li class="group hover:glow rounded-lg border border-mauve-800 p-5 transition-all duration-200 hover:border-violet-500/50">
-              <a href="/" class="block">
-                <div class="mb-2 flex items-center justify-between">
-                  <span class="font-medium text-mauve-100 transition-colors group-hover:text-violet-400"> [Project Name] </span>
-                  <span class="font-mono text-xs text-mauve-600">[stack]</span>
-                </div>
-                <p class="text-sm text-mauve-500">[One sentence describing the project.]</p>
-              </a>
-            </li>
-          </ul>
-        </section>
+        <section class="border-b border-mauve-800 py-12">
+            {{ post_body }}
+         </section>
 
         <footer class="border-t border-mauve-800 py-12">
           <p class="font-mono text-sm text-mauve-600">built with ♥️</p>

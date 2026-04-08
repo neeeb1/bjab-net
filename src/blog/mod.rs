@@ -1,1 +1,3 @@
-pub mod posts;
+pub mod render;
+mod format;
+pub mod read;
