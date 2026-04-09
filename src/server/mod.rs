@@ -2,6 +2,7 @@ use crate::server::routes::new_router;
 
 pub mod blog;
 pub mod routes;
+pub mod index;
 
 pub async fn start_server() {
     let app = new_router();

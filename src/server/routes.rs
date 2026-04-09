@@ -1,4 +1,4 @@
-use crate::server::blog;
+use crate::server::{blog, index};
 use axum::{Router, routing::get};
 use tower_http::services::{ServeDir, ServeFile};
 
@@ -7,7 +7,7 @@ use tower_http::services::{ServeDir, ServeFile};
 
 pub fn new_router() -> Router {
     Router::new()
-        .route_service("/", ServeFile::new("web/index.html"))
+        .route("/", get(index::build_index))
         .nest_service("/static", ServeDir::new("web/static"))
         .route("/blog/{slug}", get(blog::get_post))
 }

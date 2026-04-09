@@ -1,9 +1,9 @@
 ---
-title: Post Title
+title: The Second Blog Post
 date: 2024-03-01       # ISO 8601, used for sort order
 slug: post-slug-2        
 tags: [rust, web]
-description: Short summary shown in listings."
+description: This... is a second blog post.
 ---
 
 # Test post #2

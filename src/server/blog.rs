@@ -2,7 +2,7 @@ use crate::POSTS;
 use crate::blog::render::render_html_from_md;
 use axum::extract::Path;
 use axum::http::StatusCode;
-use axum::response::{Html, IntoResponse, Response};
+use axum::response::{Html, IntoResponse};
 
 // Handler for the root of the site at "/blog"
 // Because of the blog mod, might want to rename - "/posts"?
