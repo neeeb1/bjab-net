@@ -1,14 +1,14 @@
 ---
 title: Post Title
 date: 2024-03-01       # ISO 8601, used for sort order
-slug: post-slug        
+slug: post-slug-2        
 tags: [rust, web]
 description: Short summary shown in listings."
 ---
 
-# Test post #1
+# Test post #2
 
-## Subtitle of blog: The First!!
+## Subtitle of blog: this the second one
 
 Date and Time of publishing
 Last edit: at a time

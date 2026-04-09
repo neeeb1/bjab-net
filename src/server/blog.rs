@@ -1,11 +1,17 @@
-use crate::blog::{self, render::render_html_from_md};
-use axum::response::{Html, IntoResponse};
+use crate::POSTS;
+use crate::blog::render::render_html_from_md;
+use axum::extract::Path;
+use axum::http::StatusCode;
+use axum::response::{Html, IntoResponse, Response};
 
 // Handler for the root of the site at "/blog"
 // Because of the blog mod, might want to rename - "/posts"?
 
-pub async fn get_post() -> impl IntoResponse {
-    let post =
-        blog::read_file::read_markdown_file().expect("Failed to parse post struct from markdown");
-    Html(render_html_from_md(post.body)).into_response()
+pub async fn get_post(Path(slug): Path<String>) -> impl IntoResponse {
+    let response = match POSTS.get(&slug) {
+        Some(post) => render_html_from_md(post.body.clone()),
+        None => StatusCode::NOT_FOUND.to_string(),
+    };
+
+    Html(response)
 }

@@ -1,11 +1,12 @@
 use super::{FrontMatter, Post};
 use gray_matter::engine::YAML;
 use gray_matter::{Matter, ParsedEntity, Result};
+use std::path::PathBuf;
 use std::{fs::File, io::Read};
 
-pub fn read_markdown_file() -> Result<Post> {
+pub fn read_markdown_file(path: PathBuf) -> Result<Post> {
     let mut post = Post::default();
-    let mut file = File::open("posts/test_post.md").expect("Unable to open file");
+    let mut file = File::open(path).expect("Unable to open file");
     let mut contents = String::new();
 
     file.read_to_string(&mut contents)

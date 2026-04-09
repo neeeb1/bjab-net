@@ -424,6 +424,7 @@ dependencies = [
  "cargo-watch",
  "comrak",
  "gray_matter",
+ "lazy_static",
  "serde",
  "time",
  "tokio",
