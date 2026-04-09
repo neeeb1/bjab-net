@@ -9,5 +9,6 @@ pub fn new_router() -> Router {
     Router::new()
         .route("/", get(index::build_index))
         .nest_service("/static", ServeDir::new("web/static"))
+        .nest_service("/images", ServeDir::new("web/images"))
         .route("/blog/{slug}", get(blog::get_post))
 }

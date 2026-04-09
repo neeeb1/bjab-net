@@ -13,7 +13,7 @@ description: This is the first post!
 Date and Time of publishing
 Last edit: at a time
 
-![image alt text](images/title_image.png)
+![image alt text](/images/title_image.png)
 
 This is the first paragraph. You can tell, because it's under the title image and before the other sections.
 
