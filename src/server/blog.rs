@@ -5,6 +5,7 @@ use axum::response::{Html, IntoResponse};
 // Because of the blog mod, might want to rename - "/posts"?
 
 pub async fn get_post() -> impl IntoResponse {
-    let markdown_text = blog::read::read_markdown_file();
-    Html(render_html_from_md(markdown_text)).into_response()
+    let post =
+        blog::read_file::read_markdown_file().expect("Failed to parse post struct from markdown");
+    Html(render_html_from_md(post.body)).into_response()
 }

@@ -56,13 +56,11 @@ create_formatter!(BlogFormatter, {
                 comrak::nodes::ListType::Ordered =>
                     write!(context, r#"<ol class="list-decimal {base}">"#)?,
             };
-        } else {
-            if nl.list_type == comrak::nodes::ListType::Bullet {
+        } else if nl.list_type == comrak::nodes::ListType::Bullet {
                 context.write_str("</ul>")?;
             } else {
                 context.write_str("</ol>")?;
             }
-        }
     },
 
     NodeValue::Item(_) => |context, entering| {

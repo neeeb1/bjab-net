@@ -1,3 +1,11 @@
+---
+title: Post Title
+date: 2024-03-01       # ISO 8601, used for sort order
+slug: post-slug        
+tags: [rust, web]
+description: Short summary shown in listings."
+---
+
 # Title of blog
 
 ## Subtitle of blog: and why it's important

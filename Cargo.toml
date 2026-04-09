@@ -7,6 +7,9 @@ edition = "2024"
 askama = "0.15.6"
 axum = "0.8.8"
 comrak = "0.51.0"
+gray_matter = {version = "0.3.2", features =["toml"]}
+serde = "1.0.228"
+time = {version = "0.3.47", features = ["serde", "parsing"]}
 tokio = { version = "1.51.0", features = ["rt-multi-thread"] }
 tower = "0.5.3"
 tower-http = { version = "0.6.8", features = ["fs"] }
