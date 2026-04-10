@@ -25,5 +25,7 @@ pub fn render_html_from_md(markdown_body: String) -> String {
 
     let post_template = PostTemplate { post_body: &body };
 
-    post_template.render().expect("Failed to render from template")
+    post_template
+        .render()
+        .expect("Failed to render from template")
 }

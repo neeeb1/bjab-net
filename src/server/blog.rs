@@ -1,14 +1,17 @@
-use crate::POSTS;
 use crate::blog::render::render_html_from_md;
-use axum::extract::Path;
+use axum::extract::{State, Path};
 use axum::http::StatusCode;
 use axum::response::{Html, IntoResponse};
+use crate::AppState;
 
 // Handler for the root of the site at "/blog"
 // Because of the blog mod, might want to rename - "/posts"?
 
-pub async fn get_post(Path(slug): Path<String>) -> impl IntoResponse {
-    let response = match POSTS.get(&slug) {
+pub async fn get_post(
+    State(state): State<AppState>,
+    Path(slug): Path<String>,
+) -> impl IntoResponse {
+    let response = match state.posts_library.get(&slug) {
         Some(post) => render_html_from_md(post.body.clone()),
         None => StatusCode::NOT_FOUND.to_string(),
     };
