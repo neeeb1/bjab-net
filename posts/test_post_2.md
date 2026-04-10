@@ -1,7 +1,7 @@
 ---
 title: The Second Blog Post
-date: 2024-03-01       # ISO 8601, used for sort order
-slug: post-slug-2        
+date: 2024-03-01       # ISO 8601
+slug: post-slug-2      # Post slug used for url at /blog/{slug} 
 tags: [rust, web]
 description: This... is a second blog post.
 ---
