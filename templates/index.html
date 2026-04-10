@@ -74,7 +74,16 @@
                   <span class="font-medium text-mauve-100 transition-colors group-hover:text-violet-400"> {{ post.front_matter.title }} </span>
                   <span class="shrink-0 font-mono text-sm text-mauve-600">{{ post.front_matter.date }}</span>
                 </div>
-                <p class="mt-1 text-sm text-mauve-500">{{ post.front_matter.description }}</p>
+                <div class="mt-1 flex items-baseline justify-between gap-4">
+                  <p class="text-sm text-mauve-500">{{ post.front_matter.description }}</p>
+                  <div class="flex shrink-0 gap-1.5">
+                    <span class="font-mono text-xs text-mauve-600 bg-mauve-800/50 px-1.5 py-0.5 rounded">
+                      {% for tag in post.front_matter.tags %}
+                        [{{ tag }}]
+                      {% endfor %}
+                    </span>
+                  </div>
+                </div>
               </a>
             </li>
             {% endfor %}
