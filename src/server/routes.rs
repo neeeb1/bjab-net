@@ -1,6 +1,6 @@
 use crate::server::{blog, index};
 use axum::{Router, routing::get};
-use tower_http::services::{ServeDir, ServeFile};
+use tower_http::services::{ServeDir};
 
 // Returns router built with specified routes
 // TODO: Add routes (blog/foo.html, projects/bar.html)
