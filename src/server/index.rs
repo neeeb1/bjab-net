@@ -11,8 +11,11 @@ struct IndexTemplate<'a> {
 }
 
 pub async fn build_index(State(state): State<AppState>) -> impl IntoResponse {
+    let mut posts = state.posts_library.values().clone().collect::<Vec<&Post>>();
+    posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
+
     let index_template = IndexTemplate {
-        posts: state.posts_library.values().clone().collect::<Vec<&Post>>(),
+        posts: posts
     };
 
     Html(

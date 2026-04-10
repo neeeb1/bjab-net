@@ -1,6 +1,6 @@
 ---
 title: First Blog Post
-date: 2024-03-01       # ISO 8601, used for sort order
+date: 2024-01-01       # ISO 8601, used for sort order
 slug: post-slug      # Post slug used for url at /blog/{slug} 
 tags: [rust, web]
 description: This is the first post!
