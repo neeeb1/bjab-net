@@ -1,7 +1,7 @@
 ---
-title: First Blog Post
-date: 2024-01-01
-slug: post-slug
+title: Seventh Blog Post
+date: 2024-01-07
+slug: post-slug-7
 tags:
   - rust
   - web

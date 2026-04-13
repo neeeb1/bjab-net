@@ -1,12 +1,13 @@
 ---
-title: First Blog Post
-date: 2024-01-01
-slug: post-slug
+title: The Fourth Blog Post
+date: 2024-01-04       # ISO 8601
+slug: post-slug-4      # Post slug used for url at /blog/{slug} 
 tags:
   - rust
   - web
-description: This is the first post!
+description: This... is a second blog post.
 ---
+
 ## Subtitle of blog: The First!!
 Date and Time of publishing
 Last updated: at a time
