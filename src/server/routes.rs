@@ -13,6 +13,7 @@ pub fn new_router(state: AppState) -> Router {
         .route("/", get(index::build_index))
         .nest_service("/static", ServeDir::new("web/static"))
         .nest_service("/images", ServeDir::new("web/images"))
+        .route("/blog",get(blog::get_blog_posts))
         .route("/blog/{slug}", get(blog::get_post))
         .with_state(state)
 }

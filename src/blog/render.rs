@@ -14,7 +14,7 @@ struct PostTemplate<'a> {
     post_body: &'a str,
 }
 
-pub fn render_html_from_md(markdown_body: String) -> String {
+pub fn render_post_html_from_md(markdown_body: String) -> String {
     let options = Options::default();
     let arena = Arena::new();
     let doc = parse_document(&arena, &markdown_body, &options);
