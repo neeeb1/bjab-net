@@ -11,4 +11,4 @@ gray_matter = {version = "0.3.2"}
 lazy_static = "1.5.0"
 serde = "1.0.228"
 tokio = { version = "1.51.0", features = ["rt-multi-thread"] }
-tower-http = { version = "0.6.8", features = ["fs"] }
+tower-http = { version = "0.6.8", features = ["fs", "set-header"] }

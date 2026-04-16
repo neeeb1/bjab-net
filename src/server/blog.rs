@@ -1,10 +1,10 @@
-use crate::blog::render::{render_post_html_from_md};
+use crate::AppState;
 use crate::Post;
-use axum::extract::{State, Path};
+use crate::blog::render::render_post_html_from_md;
+use askama::Template;
+use axum::extract::{Path, State};
 use axum::http::StatusCode;
 use axum::response::{Html, IntoResponse};
-use crate::AppState;
-use askama::Template;
 
 // Handlers for the route "/blog"
 // Because of the blog mod, might want to rename - "/posts"?
@@ -20,9 +20,7 @@ pub async fn get_blog_posts(State(state): State<AppState>) -> impl IntoResponse 
     let mut posts = state.posts_library.values().clone().collect::<Vec<&Post>>();
     posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
 
-    let blog_template = BlogTemplate {
-        posts
-    };
+    let blog_template = BlogTemplate { posts };
 
     Html(
         blog_template

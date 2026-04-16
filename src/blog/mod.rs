@@ -2,10 +2,10 @@ use std::fs::read_dir;
 
 use serde::Deserialize;
 
-use crate::blog::read_file::read_markdown_file;
+use crate::blog::read_markdown::read_markdown_file;
 
 mod format;
-pub mod read_file;
+pub mod read_markdown;
 pub mod render;
 
 #[derive(Default, Debug)]

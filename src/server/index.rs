@@ -1,12 +1,13 @@
 use askama::Template;
-use axum::response::{Html, IntoResponse};
 use axum::extract::State;
+use axum::response::{Html, IntoResponse};
 
-use crate::{ AppState, blog::Post};
+use crate::{AppState, blog::Post};
 
 #[derive(Template)]
 #[template(path = "index.html", escape = "none")]
 struct IndexTemplate<'a> {
+    list_limit: usize,
     posts: Vec<&'a Post>,
 }
 
@@ -15,7 +16,8 @@ pub async fn build_index(State(state): State<AppState>) -> impl IntoResponse {
     posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
 
     let index_template = IndexTemplate {
-        posts
+        list_limit: 3,
+        posts,
     };
 
     Html(
