@@ -1,5 +1,7 @@
 *.pck filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+web/projects/fireplace/web_build4.zip filter=lfs diff=lfs merge=lfs -text
+web/projects/fireplace/web_build4.pck filter=lfs diff=lfs merge=lfs -text
 *.wasm filter=lfs diff=lfs merge=lfs -text
 *.data filter=lfs diff=lfs merge=lfs -text
 *.br filter=lfs diff=lfs merge=lfs -text
