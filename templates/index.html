@@ -1,59 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bjab.net</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link href="/static/tailwind.css" rel="stylesheet" />
-    <style>
-      html { scroll-behavior: smooth; }
-      body { font-family: 'Inter', system-ui, sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .glow { box-shadow: 0 0 24px 2px rgba(99, 102, 241, 0.15); }
-    </style>
-  </head>
-  <body class="min-h-screen font-sans antialiased">
-    <!-- Mobile header (hidden on desktop) -->
-    <header class="sticky top-0 z-10 border-b border-mauve-800 bg-mauve-950/90 backdrop-blur lg:hidden">
-      <div class="flex items-center justify-between px-6 py-4">
-        <a href="/" class="font-mono text-sm text-violet-400">bjab.net</a>
-        <nav class="flex gap-6 text-sm text-mauve-400">
-          <a href="/blog" class="transition-colors hover:text-mauve-100">writing</a>
-          <a href="/projects" class="transition-colors hover:text-mauve-100">projects</a>
-        </nav>
-      </div>
-    </header>
+{% extends "base.html" %}
 
-    <div class="mx-auto max-w-5xl px-6 lg:flex lg:gap-20">
-      <!-- Sidebar (desktop only) -->
-      <aside class="hidden shrink-0 lg:flex lg:w-60">
-        <div class="sticky top-0 flex h-screen flex-col py-20">
-          <a href="/" class="font-mono text-sm text-violet-400 transition-colors hover:text-violet-300">bjab.net</a>
-
-          <div class="mt-6">
-              <img class="rounded-md" src="/images/avatar.png">
-          </div>
-
-          <div class="mt-6">
-            <h1 class="text-xl font-semibold text-mauve-50">Ben Jabson</h1>
-            <p class="mt-3 text-sm leading-relaxed text-mauve-500">[One or two sentences about who you are and what you care about.]</p>
-          </div>
-
-          <nav class="mt-10 flex flex-col gap-3 text-sm text-mauve-400">
-            <a href="/blog" class="transition-colors hover:text-mauve-100">writing</a>
-            <a href="/projects" class="transition-colors hover:text-mauve-100">projects</a>
-          </nav>
-
-          <div class="mt-auto flex gap-4 text-sm text-mauve-500">
-            <a href="https://github.com/neeeb1" target="_blank" rel="noopener" class="transition-colors hover:text-mauve-100">GitHub</a>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Main content -->
+{% block content %}
       <div class="min-w-0 flex-1">
         <!-- Hero (mobile only — desktop has sidebar) -->
         <section class="border-b border-mauve-800 py-12 lg:hidden">
@@ -68,9 +15,7 @@
         <section id="posts" class="border-b border-mauve-800 py-12">
           <h2 class="mb-8 font-mono text-xs tracking-widest text-mauve-500 uppercase">Writing</h2>
           <ul class="space-y-6">
-            <!-- Placeholder posts — replace with dynamic content from Rust server -->
-            <!-- Limits to 5 most recent posts...-->
-            {% let limit = 5 %}
+            {% let limit = list_limit %}
             {% let mut i = 0 %}
 
             {% for post in posts %}
@@ -91,12 +36,12 @@
               </div>
             </li>
             {%- mut i += 1 -%}
-            {% if i == limit %}
+            {% if i == *limit %}
               {% break %}
             {% endif %}
             {% endfor %}
             <li>
-                <a href="/blog" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">See a full list of posts...</a>
+              <a href="/blog" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">See a full list of posts...</a>
             </li>
           </ul>
         </section>
@@ -116,11 +61,5 @@
             </li>
           </ul>
         </section>
-
-        <footer class="border-t border-mauve-800 py-12">
-          <p class="font-mono text-sm text-mauve-600">built with ♥️</p>
-        </footer>
       </div>
-    </div>
-  </body>
-</html>
+{% endblock %}
