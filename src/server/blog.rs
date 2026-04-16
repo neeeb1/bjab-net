@@ -21,7 +21,7 @@ pub async fn get_blog_posts(State(state): State<AppState>) -> impl IntoResponse 
     posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
 
     let blog_template = BlogTemplate {
-        posts: posts
+        posts
     };
 
     Html(

@@ -6,7 +6,6 @@ use super::format::BlogFormatter;
 // TODO: [X] Add comrak formatter (https://docs.rs/comrak/latest/comrak/macro.create_formatter.html)
 // TODO: [X] Create posts struct to hold post meta data + body
 // TODO: [X] Wire up greymatter with comrak to get post meta data (slug, title, description, etc.)
-// TODO: [ ] Write all html at startup rather than each time handler is called?
 
 #[derive(Template)]
 #[template(path = "post.html", escape = "none")]

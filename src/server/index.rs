@@ -15,7 +15,7 @@ pub async fn build_index(State(state): State<AppState>) -> impl IntoResponse {
     posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
 
     let index_template = IndexTemplate {
-        posts: posts
+        posts
     };
 
     Html(
