@@ -3,7 +3,7 @@ use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 
 use crate::blog::{Post, build_posts};
-use crate::projects::wasm::{find_wasm_projects};
+use crate::projects::wasm::find_wasm_projects;
 
 mod blog;
 mod projects;
@@ -26,11 +26,11 @@ async fn main() {
         .map(|post| (post.front_matter.slug.clone(), post))
         .collect();
 
-    let wasm_projects= find_wasm_projects();
+    let wasm_projects = find_wasm_projects();
 
     let state = AppState {
         posts_library: Arc::new(posts_library),
-        wasm_projects: Arc::new(wasm_projects)
+        wasm_projects: Arc::new(wasm_projects),
     };
 
     server::start_server(state).await

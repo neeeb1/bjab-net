@@ -1,14 +1,11 @@
 use crate::{
     AppState,
-    projects::wasm::{self, wasm_headers},
+    projects::wasm::wasm_headers,
     server::{blog, index},
 };
 use axum::{
     Router,
-    extract::{Request, State},
-    http::{HeaderName, HeaderValue},
-    middleware::{self, Next},
-    response::Response,
+    middleware::{self},
     routing::get,
 };
 use tower_http::services::ServeDir;

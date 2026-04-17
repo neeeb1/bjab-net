@@ -1,12 +1,10 @@
-use std::{collections::HashSet, fs::read_dir};
 use axum::{
-    Router,
     extract::{Request, State},
     http::{HeaderName, HeaderValue},
     middleware::Next,
     response::Response,
-    routing::get,
 };
+use std::{collections::HashSet, fs::read_dir};
 
 use crate::AppState;
 
@@ -28,12 +26,11 @@ pub fn find_wasm_projects() -> HashSet<String> {
             .flatten()
             .any(|f| f.path().extension().is_some_and(|e| e == "wasm"));
 
-        if has_wasm {
-            if let Some(name) = path.file_name().and_then(|n| n.to_str()) {
-                wasm_projects.insert(name.to_string());
-            }
+        if has_wasm && let Some(name) = path.file_name().and_then(|n| n.to_str()) {
+            wasm_projects.insert(name.to_string());
         }
     }
+
     wasm_projects
 }
 
