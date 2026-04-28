@@ -40,15 +40,22 @@
         <section id="projects" class="py-12">
           <h2 class="mb-8 font-mono text-xs tracking-widest text-mauve-500 uppercase">Projects</h2>
           <ul class="space-y-4">
-            <li class="group hover:glow rounded-lg border border-mauve-800 p-5 transition-all duration-200 hover:border-violet-500/50">
-              <a href="/" class="block">
-                <div class="mb-2 flex items-center justify-between">
-                  <span class="font-medium text-mauve-100 transition-colors group-hover:text-violet-400"> [Project Name] </span>
-                  <span class="font-mono text-xs text-mauve-600">[stack]</span>
+            {{range .Projects}}
+           <li>
+              <div class="flex items-baseline justify-between gap-4">
+                <a href="/projects/{{.Metadata.Slug}}" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">{{.Metadata.Title}}</a>
+                <span class="shrink-0 font-mono text-sm text-mauve-600">{{.Metadata.Date}}</span>
+              </div>
+              <div class="mt-1 flex items-baseline justify-between gap-4">
+                <p class="text-sm text-mauve-500">{{.Metadata.Description}}</p>
+                <div class="flex shrink-0 gap-1.5">
+                  {{range .Metadata.Tags}}
+                  <span class="font-mono text-xs text-mauve-600 bg-mauve-800/50 px-1.5 py-0.5 rounded">[{{.}}]</span>
+                  {{end}}
                 </div>
-                <p class="text-sm text-mauve-500">[One sentence describing the project.]</p>
-              </a>
+              </div>
             </li>
+            {{end}}
           </ul>
         </section>
       </div>

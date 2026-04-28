@@ -8,8 +8,12 @@ import (
 
 func RegisterRoutes(mux *http.ServeMux, state AppState) {
 	mux.HandleFunc("GET /", state.handleIndex)
+
 	mux.HandleFunc("GET /blog", state.handleBlogList)
 	mux.HandleFunc("GET /blog/{slug}", state.handlePost)
+
+	mux.HandleFunc("GET /projects", state.handleProjectList)
+
 	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 	mux.Handle("GET /images/", http.StripPrefix("/images/", http.FileServer(http.Dir("web/images"))))
 

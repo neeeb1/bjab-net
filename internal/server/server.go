@@ -11,6 +11,12 @@ import (
 
 var PORT = 3000
 
+type AppState struct {
+	Posts        map[string]blog.Post
+	Projects     map[string]projects.Project
+	WasmProjects map[string]bool
+}
+
 func StartServer() {
 	mux := http.NewServeMux()
 	state := AppState{}
@@ -20,10 +26,17 @@ func StartServer() {
 	if err != nil {
 		log.Fatal("Failed to build list of blog posts: ", err)
 	}
+
+	state.Projects, err = projects.BuildProjects()
+	if err != nil {
+		log.Fatal("Failed to build list of projects: ", err)
+	}
+
 	state.WasmProjects, err = projects.FindWasmProjects()
 	if err != nil {
 		log.Fatal("Failed to build list of wasm projects")
 	}
+
 	RegisterRoutes(mux, state)
 
 	log.Printf("Server starting, listening on port :%d", PORT)
