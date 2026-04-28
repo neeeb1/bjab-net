@@ -1,6 +1,5 @@
-{% extends "base.html" %}
+{{define "content"}}
 
-{% block content %}
       <div class="min-w-0 flex-1">
         <!-- Hero (mobile only — desktop has sidebar) -->
         <section class="border-b border-mauve-800 py-12 lg:hidden">
@@ -15,31 +14,22 @@
         <section id="posts" class="border-b border-mauve-800 py-12">
           <h2 class="mb-8 font-mono text-xs tracking-widest text-mauve-500 uppercase">Writing</h2>
           <ul class="space-y-6">
-            {% let limit = list_limit %}
-            {% let mut i = 0 %}
-
-            {% for post in posts %}
+            {{range .Posts}}
             <li>
               <div class="flex items-baseline justify-between gap-4">
-                <a href="/blog/{{ post.front_matter.slug }}" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">{{ post.front_matter.title }}</a>
-                <span class="shrink-0 font-mono text-sm text-mauve-600">{{ post.front_matter.date }}</span>
+                <a href="/blog/{{.Metadata.Slug}}" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">{{.Metadata.Title}}</a>
+                <span class="shrink-0 font-mono text-sm text-mauve-600">{{.Metadata.Date}}</span>
               </div>
               <div class="mt-1 flex items-baseline justify-between gap-4">
-                <p class="text-sm text-mauve-500">{{ post.front_matter.description }}</p>
+                <p class="text-sm text-mauve-500">{{.Metadata.Description}}</p>
                 <div class="flex shrink-0 gap-1.5">
-                  {% for tag in post.front_matter.tags %}
-                  <span class="font-mono text-xs text-mauve-600 bg-mauve-800/50 px-1.5 py-0.5 rounded">
-                      [{{ tag }}]
-                  </span>
-                  {% endfor %}
+                  {{range .Metadata.Tags}}
+                  <span class="font-mono text-xs text-mauve-600 bg-mauve-800/50 px-1.5 py-0.5 rounded">[{{.}}]</span>
+                  {{end}}
                 </div>
               </div>
             </li>
-            {%- mut i += 1 -%}
-            {% if i == *limit %}
-              {% break %}
-            {% endif %}
-            {% endfor %}
+            {{end}}
             <li>
               <a href="/blog" class="font-medium text-mauve-100 transition-colors hover:text-violet-400">See a full list of posts...</a>
             </li>
@@ -62,4 +52,4 @@
           </ul>
         </section>
       </div>
-{% endblock %}
+{{ end }}

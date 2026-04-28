@@ -1,6 +1,5 @@
-{% extends "base.html" %}
+{{define "content"}}
 
-{% block content %}
       <div class="min-w-0 flex-1">
         <!-- Hero (mobile only — desktop has sidebar) -->
         <section class="border-b border-mauve-800 py-12 lg:hidden">
@@ -12,7 +11,8 @@
         </section>
 
         <section class="border-b border-mauve-800 py-12">
-          {{ post_body }}
+          {{ . }}
         </section>
       </div>
-{% endblock %}
+      
+{{ end }}
