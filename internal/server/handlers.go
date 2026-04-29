@@ -15,6 +15,7 @@ var indexTemplate = template.Must(template.ParseFiles("web/templates/base.html",
 var blogTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/blog.html"))
 var postTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/post.html"))
 var projectsTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/projects.html"))
+var projectTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/project.html"))
 
 type IndexData struct {
 	Posts    []blog.Post
@@ -27,6 +28,10 @@ type BlogData struct {
 
 type ProjectsData struct {
 	Projects []projects.Project
+}
+
+type ProjectData struct {
+	Project projects.Project
 }
 
 func RespondWithError(w http.ResponseWriter, code int, msg string) {
@@ -82,6 +87,20 @@ func (s *AppState) handleBlogList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	blogTemplate.ExecuteTemplate(w, "base", BlogData{Posts: sortedPosts})
+}
+
+func (s *AppState) handleProject(w http.ResponseWriter, r *http.Request) {
+	slug := r.PathValue("slug")
+	project, ok := s.Projects[slug]
+	if !ok {
+		RespondWithError(w, 404, "Project not found")
+		return
+	}
+	if project.Embed == "wasm" {
+		w.Header().Set("cross-origin-opener-policy", "same-origin")
+		w.Header().Set("cross-origin-embedder-policy", "require-corp")
+	}
+	projectTemplate.ExecuteTemplate(w, "base", ProjectData{Project: project})
 }
 
 func (s *AppState) handleProjectList(w http.ResponseWriter, r *http.Request) {

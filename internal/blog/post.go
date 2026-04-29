@@ -8,20 +8,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/neeeb1/bjab-net/internal/meta"
 	"go.yaml.in/yaml/v2"
 )
 
-type Metadata struct {
-	Title       string   `yaml:"title"`
-	Date        string   `yaml:"date"`
-	Slug        string   `yaml:"slug"`
-	Tags        []string `yaml:"tags"`
-	Description string   `yaml:"description"`
-	Draft       bool     `yaml:"draft"`
-}
-
 type Post struct {
-	Metadata Metadata
+	Metadata meta.Metadata
 	MdBody   string
 	HTMLBody template.HTML
 }
@@ -37,8 +29,8 @@ func parseMarkdownFile(path string) (Post, error) {
 	parts := strings.SplitN(string(data), "---", 3)
 
 	// parts[1] = YAML frontmater, parts[2] = markdown body
-	var meta Metadata
-	yaml.Unmarshal([]byte(parts[1]), &meta)
+	var m meta.Metadata
+	yaml.Unmarshal([]byte(parts[1]), &m)
 
 	// Render part[2] (body) to valid html
 	markdown := strings.TrimSpace(parts[2])
@@ -47,7 +39,7 @@ func parseMarkdownFile(path string) (Post, error) {
 		return result, err
 	}
 
-	return Post{Metadata: meta, MdBody: markdown, HTMLBody: template.HTML(html)}, err
+	return Post{Metadata: m, MdBody: markdown, HTMLBody: template.HTML(html)}, err
 }
 
 func BuildPosts() (map[string]Post, error) {

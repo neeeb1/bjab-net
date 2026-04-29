@@ -1,6 +1,7 @@
 package projects
 
 import (
+	"html/template"
 	"os"
 	"path/filepath"
 	"sort"
@@ -8,11 +9,20 @@ import (
 	"time"
 
 	"github.com/neeeb1/bjab-net/internal/blog"
+	"github.com/neeeb1/bjab-net/internal/meta"
 	"go.yaml.in/yaml/v2"
 )
 
+type projectMetadata struct {
+	meta.Metadata `yaml:",inline"`
+	Embed         string `yaml:"embed"`
+}
+
 type Project struct {
-	Metadata blog.Metadata
+	Metadata meta.Metadata
+	Embed    string
+	MdBody   string
+	HTMLBody template.HTML
 }
 
 func parseMetadata(path string) (Project, error) {
@@ -26,10 +36,17 @@ func parseMetadata(path string) (Project, error) {
 	parts := strings.SplitN(string(data), "---", 3)
 
 	// parts[1] = YAML frontmater, parts[2] = markdown body
-	var meta blog.Metadata
-	yaml.Unmarshal([]byte(parts[1]), &meta)
+	var m projectMetadata
+	yaml.Unmarshal([]byte(parts[1]), &m)
 
-	return Project{Metadata: meta}, err
+	// read and render markdown body (parts[2])
+	md := strings.TrimSpace(parts[2])
+	html, err := blog.RenderPost(md)
+	if err != nil {
+		return result, err
+	}
+
+	return Project{Metadata: m.Metadata, Embed: m.Embed, MdBody: md, HTMLBody: template.HTML(html)}, err
 }
 
 func BuildProjects() (map[string]Project, error) {

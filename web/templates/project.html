@@ -1,0 +1,48 @@
+{{define "content"}}
+
+      <div class="min-w-0 flex-1">
+        <!-- Hero (mobile only — desktop has sidebar) -->
+        <section class="border-b border-mauve-800 py-12 lg:hidden">
+          <h1 class="mb-3 text-3xl font-semibold tracking-tight text-mauve-50">[Your Name]</h1>
+          <p class="leading-relaxed text-mauve-400">[One or two sentences about who you are and what you care about.]</p>
+          <div class="mt-6 flex gap-4 text-sm text-mauve-500">
+            <a href="https://github.com/neeeb1" target="_blank" rel="noopener" class="transition-colors hover:text-mauve-100">GitHub</a>
+          </div>
+        </section>
+
+        <!-- Project header -->
+        <section class="border-b border-mauve-800 py-12">
+          <div class="flex items-baseline justify-between gap-4">
+            <h1 class="text-2xl font-semibold tracking-tight text-mauve-50">{{.Project.Metadata.Title}}</h1>
+            <span class="shrink-0 font-mono text-sm text-mauve-600">{{.Project.Metadata.Date}}</span>
+          </div>
+          <p class="mt-2 text-mauve-400">{{.Project.Metadata.Description}}</p>
+          {{if .Project.Metadata.Tags}}
+          <div class="mt-3 flex gap-1.5">
+            {{range .Project.Metadata.Tags}}
+            <span class="font-mono text-xs text-mauve-600 bg-mauve-800/50 px-1.5 py-0.5 rounded">[{{.}}]</span>
+            {{end}}
+          </div>
+          {{end}}
+        </section>
+
+        {{if eq .Project.Embed "wasm"}}
+        <!-- Embedded WASM project -->
+        <section class="border-b border-mauve-800 py-12">
+          <iframe
+            src="/projects/{{.Project.Metadata.Slug}}/"
+            class="w-full aspect-video rounded-lg border border-mauve-800"
+            allowfullscreen
+          ></iframe>
+        </section>
+        {{end}}
+
+        <!-- Markdown body -->
+        {{if .Project.HTMLBody}}
+        <section class="py-12">
+          {{.Project.HTMLBody}}
+        </section>
+        {{end}}
+      </div>
+
+{{end}}

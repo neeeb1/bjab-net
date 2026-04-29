@@ -13,6 +13,7 @@ func RegisterRoutes(mux *http.ServeMux, state AppState) {
 	mux.HandleFunc("GET /blog/{slug}", state.handlePost)
 
 	mux.HandleFunc("GET /projects", state.handleProjectList)
+	mux.HandleFunc("GET /projects/{slug}", state.handleProject)
 
 	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 	mux.Handle("GET /images/", http.StripPrefix("/images/", http.FileServer(http.Dir("web/images"))))
