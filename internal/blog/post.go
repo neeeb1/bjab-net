@@ -17,6 +17,7 @@ type Metadata struct {
 	Slug        string   `yaml:"slug"`
 	Tags        []string `yaml:"tags"`
 	Description string   `yaml:"description"`
+	Draft       bool     `yaml:"draft"`
 }
 
 type Post struct {
@@ -61,6 +62,9 @@ func BuildPosts() (map[string]Post, error) {
 		post, err := parseMarkdownFile(filepath.Join("web/posts", e.Name()))
 		if err != nil {
 			return posts, err
+		}
+		if post.Metadata.Draft == true {
+			continue
 		}
 		posts[post.Metadata.Slug] = post
 	}

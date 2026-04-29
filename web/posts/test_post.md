@@ -6,6 +6,7 @@ tags:
   - rust
   - web
 description: This is the first post!
+draft: false
 ---
 ## Subtitle of blog: The First!!
 Date and Time of publishing
