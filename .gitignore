@@ -33,3 +33,7 @@ go.work.sum
 # Claude stuff
 .claude
 memory
+
+# Air stuff
+tmp/
+air.toml

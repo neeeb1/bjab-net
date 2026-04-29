@@ -2,11 +2,11 @@ package blog
 
 import (
 	"html/template"
+	"maps"
 	"os"
 	"path/filepath"
-	"sort"
+	"slices"
 	"strings"
-	"time"
 
 	"github.com/neeeb1/bjab-net/internal/meta"
 	"go.yaml.in/yaml/v2"
@@ -17,6 +17,8 @@ type Post struct {
 	MdBody   string
 	HTMLBody template.HTML
 }
+
+func (p Post) GetDate() string { return p.Metadata.Date }
 
 func parseMarkdownFile(path string) (Post, error) {
 	var result Post
@@ -65,26 +67,5 @@ func BuildPosts() (map[string]Post, error) {
 }
 
 func SortedPosts(posts map[string]Post) ([]Post, error) {
-	result := make([]Post, 0, len(posts))
-
-	for _, p := range posts {
-		result = append(result, p)
-	}
-
-	var err error
-	sort.SliceStable(result, func(i int, j int) bool {
-		layout := "2006-01-02"
-
-		t1, e1 := time.Parse(layout, result[i].Metadata.Date)
-		t2, e2 := time.Parse(layout, result[j].Metadata.Date)
-		if e1 != nil {
-			err = e1
-		}
-		if e2 != nil {
-			err = e2
-		}
-
-		return t1.After(t2)
-	})
-	return result, err
+	return meta.SortByDate(slices.Collect(maps.Values(posts)))
 }

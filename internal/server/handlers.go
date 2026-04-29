@@ -3,7 +3,9 @@ package server
 import (
 	"encoding/json"
 	"net/http"
+	"sort"
 	"text/template"
+	"time"
 
 	"github.com/neeeb1/bjab-net/internal/blog"
 	"github.com/neeeb1/bjab-net/internal/projects"
@@ -16,6 +18,7 @@ var blogTemplate = template.Must(template.ParseFiles("web/templates/base.html", 
 var postTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/post.html"))
 var projectsTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/projects.html"))
 var projectTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/project.html"))
+var feedTemplate = template.Must(template.ParseFiles("web/templates/feed.xml"))
 
 type IndexData struct {
 	Posts    []blog.Post
@@ -110,4 +113,63 @@ func (s *AppState) handleProjectList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	projectsTemplate.ExecuteTemplate(w, "base", ProjectsData{Projects: sortedProjects})
+}
+
+func (s *AppState) handleRSSFeed(w http.ResponseWriter, r *http.Request) {
+	type FeedItem struct {
+		Title       string
+		Link        string
+		PubDate     string
+		Description string
+	}
+
+	type FeedData struct {
+		Items []FeedItem
+	}
+
+	toRFC1123 := func(date string) string {
+		t, err := time.Parse("2006-01-02", date)
+		if err != nil {
+			return ""
+		}
+		return t.Format(time.RFC1123Z)
+	}
+
+	items := make([]FeedItem, 0, len(s.Posts)+len(s.Projects))
+	for _, p := range s.Posts {
+		items = append(items, FeedItem{
+			Title:       p.Metadata.Title,
+			Link:        "https://bjab.net/blog/" + p.Metadata.Slug,
+			PubDate:     toRFC1123(p.Metadata.Date),
+			Description: p.Metadata.Description,
+		})
+	}
+	for _, p := range s.Projects {
+		items = append(items, FeedItem{
+			Title:       p.Metadata.Title,
+			Link:        "https://bjab.net/projects/" + p.Metadata.Slug,
+			PubDate:     toRFC1123(p.Metadata.Date),
+			Description: p.Metadata.Description,
+		})
+	}
+
+	var err error
+	sort.SliceStable(items, func(i, j int) bool {
+		t1, e1 := time.Parse(time.RFC1123Z, items[i].PubDate)
+		t2, e2 := time.Parse(time.RFC1123Z, items[j].PubDate)
+		if e1 != nil {
+			err = e1
+		}
+		if e2 != nil {
+			err = e2
+		}
+		return t1.After(t2)
+	})
+	if err != nil {
+		RespondWithError(w, 500, "Failed to sort articles")
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/rss+xml")
+	feedTemplate.Execute(w, FeedData{Items: items})
 }

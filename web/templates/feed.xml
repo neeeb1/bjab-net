@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bjab.net</title>
+    <link>https://bjab.net</link>
+    <atom:link href="https://bjab.net/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Ben Jabson's blog and projects</description>
+    {{range .Items}}
+    <item>
+      <title>{{.Title}}</title>
+      <link>{{.Link}}</link>
+      <pubDate>{{.PubDate}}</pubDate>
+      <description>{{.Description}}</description>
+      <guid>{{.Link}}</guid>
+    </item>
+    {{end}}
+  </channel>
+</rss>

@@ -2,11 +2,11 @@ package projects
 
 import (
 	"html/template"
+	"maps"
 	"os"
 	"path/filepath"
-	"sort"
+	"slices"
 	"strings"
-	"time"
 
 	"github.com/neeeb1/bjab-net/internal/blog"
 	"github.com/neeeb1/bjab-net/internal/meta"
@@ -24,6 +24,8 @@ type Project struct {
 	MdBody   string
 	HTMLBody template.HTML
 }
+
+func (p Project) GetDate() string { return p.Metadata.Date }
 
 func parseMetadata(path string) (Project, error) {
 	var result Project
@@ -69,26 +71,5 @@ func BuildProjects() (map[string]Project, error) {
 }
 
 func SortedProjects(projects map[string]Project) ([]Project, error) {
-	result := make([]Project, 0, len(projects))
-
-	for _, p := range projects {
-		result = append(result, p)
-	}
-
-	var err error
-	sort.SliceStable(result, func(i int, j int) bool {
-		layout := "2006-01-02"
-
-		t1, e1 := time.Parse(layout, result[i].Metadata.Date)
-		t2, e2 := time.Parse(layout, result[j].Metadata.Date)
-		if e1 != nil {
-			err = e1
-		}
-		if e2 != nil {
-			err = e2
-		}
-
-		return t1.After(t2)
-	})
-	return result, err
+	return meta.SortByDate(slices.Collect(maps.Values(projects)))
 }
