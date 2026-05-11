@@ -7,6 +7,8 @@ tags:
   - games
 description: Warm your bones by the virutal hearth
 embed: wasm
+embed_width: 1280
+embed_height: 720
 ---
 
 A small Godot scene made as a Christmas gift. Sit back and enjoy the crackling fire.

@@ -7,3 +7,7 @@
     color: oklch(92.2% 0.005 325.62);            /* mauve-200 */
   }
 }
+
+div.email > span {
+  display: none;
+}

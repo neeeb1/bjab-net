@@ -15,14 +15,18 @@ import (
 
 type projectMetadata struct {
 	meta.Metadata `yaml:",inline"`
-	Embed         string `yaml:"embed"`
+	Embed       string `yaml:"embed"`
+	EmbedWidth  int    `yaml:"embed_width"`
+	EmbedHeight int    `yaml:"embed_height"`
 }
 
 type Project struct {
-	Metadata meta.Metadata
-	Embed    string
-	MdBody   string
-	HTMLBody template.HTML
+	Metadata    meta.Metadata
+	Embed       string
+	EmbedWidth  int
+	EmbedHeight int
+	MdBody      string
+	HTMLBody    template.HTML
 }
 
 func (p Project) GetDate() string { return p.Metadata.Date }
@@ -48,7 +52,7 @@ func parseMetadata(path string) (Project, error) {
 		return result, err
 	}
 
-	return Project{Metadata: m.Metadata, Embed: m.Embed, MdBody: md, HTMLBody: template.HTML(html)}, err
+	return Project{Metadata: m.Metadata, Embed: m.Embed, EmbedWidth: m.EmbedWidth, EmbedHeight: m.EmbedHeight, MdBody: md, HTMLBody: template.HTML(html)}, err
 }
 
 func BuildProjects() (map[string]Project, error) {

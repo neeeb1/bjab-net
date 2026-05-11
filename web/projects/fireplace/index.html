@@ -11,15 +11,22 @@ html, body, #canvas {
 	border: 0;
 }
 
+html, body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
 body {
 	color: white;
 	background-color: black;
-	overflow: hidden;
 	touch-action: none;
 }
 
 #canvas {
 	display: block;
+	width: 100vw;
+	height: 100vh;
 }
 
 #canvas:focus {
@@ -97,7 +104,7 @@ body {
 
 		<script src="web_build4.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":false,"executable":"web_build4","experimentalVK":false,"fileSizes":{"web_build4.pck":107639808,"web_build4.wasm":43016933},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":0,"ensureCrossOriginIsolationHeaders":false,"executable":"web_build4","experimentalVK":false,"fileSizes":{"web_build4.pck":107639808,"web_build4.wasm":43016933},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

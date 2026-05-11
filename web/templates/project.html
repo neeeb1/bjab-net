@@ -1,15 +1,5 @@
 {{define "content"}}
 
-      <div class="min-w-0 flex-1">
-        <!-- Hero (mobile only — desktop has sidebar) -->
-        <section class="border-b border-mauve-800 py-12 lg:hidden">
-          <h1 class="mb-3 text-3xl font-semibold tracking-tight text-mauve-50">[Your Name]</h1>
-          <p class="leading-relaxed text-mauve-400">[One or two sentences about who you are and what you care about.]</p>
-          <div class="mt-6 flex gap-4 text-sm text-mauve-500">
-            <a href="https://github.com/neeeb1" target="_blank" rel="noopener" class="transition-colors hover:text-mauve-100">GitHub</a>
-          </div>
-        </section>
-
         <!-- Project header -->
         <section class="border-b border-mauve-800 py-12">
           <div class="flex items-baseline justify-between gap-4">
@@ -29,11 +19,20 @@
         {{if eq .Project.Embed "wasm"}}
         <!-- Embedded WASM project -->
         <section class="border-b border-mauve-800 py-12">
+          {{if or .Project.EmbedWidth .Project.EmbedHeight}}
+          <iframe
+            src="/projects/{{.Project.Metadata.Slug}}/"
+            class="mx-auto block rounded-lg border border-mauve-800"
+            style="{{if .Project.EmbedWidth}}width: {{.Project.EmbedWidth}}px; {{end}}{{if .Project.EmbedHeight}}height: {{.Project.EmbedHeight}}px;{{end}}"
+            allowfullscreen
+          ></iframe>
+          {{else}}
           <iframe
             src="/projects/{{.Project.Metadata.Slug}}/"
             class="w-full aspect-video rounded-lg border border-mauve-800"
             allowfullscreen
           ></iframe>
+          {{end}}
         </section>
         {{end}}
 
@@ -43,6 +42,5 @@
           {{.Project.HTMLBody}}
         </section>
         {{end}}
-      </div>
 
 {{end}}
