@@ -3,7 +3,7 @@
 
 @layer base {
   html {
-    background-color: oklch(26.3% 0.024 320.12); /* mauve-800 */
+    background-color: oklch(41.51% 0.04597 308.873); /* mauve-800 */
     color: oklch(92.2% 0.005 325.62);            /* mauve-200 */
   }
 }

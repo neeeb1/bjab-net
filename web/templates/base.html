@@ -32,26 +32,40 @@
 
     <div class="mx-auto max-w-5xl px-6 lg:flex lg:gap-20">
       <!-- Sidebar (desktop only) -->
-      <aside class="hidden shrink-0 lg:flex lg:w-60">
-        <div class="sticky top-0 flex h-[calc(100vh-8rem)] flex-col py-20 overflow-y-auto">
-          <a href="/" class="font-mono text-sm text-violet-400 transition-colors hover:text-violet-300">bjab.net</a>
-
-          <div class="mt-6">
-              <img class="rounded-lg" src="/images/avatar.png">
+      <aside class="hidden shrink-0 lg:flex lg:w-[200px]">
+        <div class="lg:sticky lg:top-20 py-20">
+          <div class="mb-20 flex flex-col items-start">
+            <a href="/" class="font-mono text-sm text-violet-400 transition-colors hover:text-violet-300">bjab.net</a>
           </div>
 
-          <div class="mt-6">
+          <div class="mb-20">
+            <img class="rounded-lg mb-6" src="/images/avatar.png">
             <h1 class="text-xl font-semibold text-mauve-50">Hey, I'm Ben Jabson!</h1>
             <p class="mt-3 text-sm leading-relaxed text-mauve-500">I'm a IT professional and programmer.<br><br>I'm writing primarily in Go, with some Rust and Python.<br><br>I'm interested in the web, game design, and infrastructure.<br><br>You can drop me a line at:</p>
             <div class="underline mt-3 text-sm leading-relaxed text-mauve-500 email">hello@<span>email.</span>bjab.<span>com.</span>net</div>
           </div>
 
-          <nav class="mt-10 flex flex-col gap-3 text-sm text-mauve-400">
-            <a href="/blog" class="transition-colors hover:text-mauve-100">writing</a>
-            <a href="/projects" class="transition-colors hover:text-mauve-100">projects</a>
-            <a href="/feed.xml" class="transition-colors hover:text-mauve-100">rss feed</a>
-            <a href="https://github.com/neeeb1" target="_blank" rel="noopener" class="transition-colors hover:text-mauve-100">github</a>
-            <a href="https://neeeb1.itch.io" target="_blank" rel="noopener" class="transition-colors hover:text-mauve-100">itch.io</a>
+          <nav class="flex flex-col items-start relative left-[-6px]" id="nav">
+            <div class="flex flex-row text-sm py-1 items-center">
+              <div class="relative mr-2 left-px w-[4px] h-[4px] rounded-full bg-mauve-700"></div>
+              <a href="/blog" class="transition-opacity hover:opacity-60 text-mauve-400">writing</a>
+            </div>
+            <div class="flex flex-row text-sm py-1 items-center">
+              <div class="relative mr-2 left-px w-[4px] h-[4px] rounded-full bg-mauve-700"></div>
+              <a href="/projects" class="transition-opacity hover:opacity-60 text-mauve-400">projects</a>
+            </div>
+            <div class="flex flex-row text-sm py-1 items-center">
+              <div class="relative mr-2 left-px w-[4px] h-[4px] rounded-full bg-mauve-700"></div>
+              <a href="/feed.xml" class="transition-opacity hover:opacity-60 text-mauve-400">rss feed</a>
+            </div>
+            <div class="flex flex-row text-sm py-1 items-center">
+              <div class="relative mr-2 left-px w-[4px] h-[4px] rounded-full bg-mauve-700"></div>
+              <a href="https://github.com/neeeb1" target="_blank" rel="noopener" class="transition-opacity hover:opacity-60 text-mauve-400">github</a>
+            </div>
+            <div class="flex flex-row text-sm py-1 items-center">
+              <div class="relative mr-2 left-px w-[4px] h-[4px] rounded-full bg-mauve-700"></div>
+              <a href="https://neeeb1.itch.io" target="_blank" rel="noopener" class="transition-opacity hover:opacity-60 text-mauve-400">itch.io</a>
+            </div>
           </nav>
         </div>
       </aside>
@@ -75,7 +89,7 @@
 
     <!-- Footer -->
     <footer class="border-t border-mauve-800 py-12">
-      <p class="font-mono text-center text-sm text-mauve-600">built with ♥️</p>
+      <p class="font-mono text-center text-sm text-mauve-600">built with ♥️ 2026 </p>
     </footer>
   </body>
 </html>
