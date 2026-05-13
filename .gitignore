@@ -36,4 +36,4 @@ memory
 
 # Air stuff
 tmp/
-air.toml
+.air.toml
