@@ -213,6 +213,12 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .-left-1 {
+    left: calc(var(--spacing) * -1);
+  }
+  .-left-1\.5 {
+    left: calc(var(--spacing) * -1.5);
+  }
   .left-\[-6px\] {
     left: -6px;
   }
@@ -324,6 +330,9 @@
   .aspect-video {
     aspect-ratio: var(--aspect-video);
   }
+  .h-1 {
+    height: calc(var(--spacing) * 1);
+  }
   .h-32 {
     height: calc(var(--spacing) * 32);
   }
@@ -332,6 +341,9 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
   .w-32 {
     width: calc(var(--spacing) * 32);
