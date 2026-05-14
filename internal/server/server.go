@@ -18,6 +18,8 @@ type AppState struct {
 }
 
 func StartServer() {
+	parseTemplates()
+
 	mux := http.NewServeMux()
 	state := AppState{}
 

@@ -13,12 +13,23 @@ import (
 
 var MAX_INDEX_POSTS = 3
 
-var indexTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/index.html"))
-var blogTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/blog.html"))
-var postTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/post.html"))
-var projectsTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/projects.html"))
-var projectTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/project.html"))
-var feedTemplate = template.Must(template.ParseFiles("web/templates/feed.xml"))
+var (
+	indexTemplate    *template.Template
+	blogTemplate     *template.Template
+	postTemplate     *template.Template
+	projectsTemplate *template.Template
+	projectTemplate  *template.Template
+	feedTemplate     *template.Template
+)
+
+func parseTemplates() {
+	indexTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/index.html"))
+	blogTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/blog.html"))
+	postTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/post.html"))
+	projectsTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/projects.html"))
+	projectTemplate = template.Must(template.ParseFiles("web/templates/base.html", "web/templates/project.html"))
+	feedTemplate = template.Must(template.ParseFiles("web/templates/feed.xml"))
+}
 
 type IndexData struct {
 	Posts    []blog.Post
