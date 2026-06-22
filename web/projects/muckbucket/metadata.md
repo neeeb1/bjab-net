@@ -11,6 +11,8 @@ embed: wasm
 
 My submission for the 2023 GMTK Game Jam. The theme was Roles Reversed.
 
+Also available on [itch.io](https://neeeb1.itch.io/muckbucket).
+
 In this anti-janitorial simulation, try to spread as much 'muck' as possible!
 
 ## Controls

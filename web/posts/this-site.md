@@ -13,7 +13,7 @@ draft: false
 
 I've had a personal website for awhile, but it was pretty barren and half-finished. I made it during a job search a few years ago. The old site was simply a [HTML 5UP! template](https://html5up.net/strata) (Strata, to be exact) with the content replaced and a few links slapped haphazardly. This was before I had done any courses on [Boot.dev](https://boot.dev), before I understood how web servers really work, and before I had ever written a line of Go code.
 
-I'm proud of the first iteration of the new site! It's a compiled Go program that takes Markdown files and a few Jinja templates and serves a simple static site - neat! It's even got an [rss feed](/feed.xml) constructed from a Jinja, if you're interested. You can check [out the repo here.](https://github.com/neeeb1/bjab-net)
+I'm proud of the first iteration of the new site! It's a compiled Go program that takes Markdown files and a few Jinja templates and serves a simple static site - neat! It's even got an [rss feed](/feed.xml) constructed from a Jinja template, if you're interested. You can check [out the repo here.](https://github.com/neeeb1/bjab-net)
 
 ## What's this for?
 

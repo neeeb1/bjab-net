@@ -12,3 +12,5 @@ embed_height: 720
 ---
 
 A small Godot scene made as a Christmas gift. Sit back and enjoy the crackling fire.
+
+Also available on [itch.io](https://neeeb1.itch.io/xmas-2024)!
